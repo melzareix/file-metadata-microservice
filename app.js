@@ -18,6 +18,15 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
+app.post('/', upload.single('uploadedFile'), function (req, res, next) {
+    console.log(req.file);
+    res.json({
+        status: 'OK',
+        name: req.file.originalname,
+        fileType: req.file.mimetype,
+        fileSize: req.file.size
+    });
+});
 
 /**
  * Error handling Middleware
